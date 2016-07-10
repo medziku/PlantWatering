@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +25,8 @@ import android.widget.Toast;
 
 import java.util.Set;
 
-public class ScrollingActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
-    private static final String TAG = ScrollingActivity.class.getName();
+public class DevicesActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+    private static final String TAG = DevicesActivity.class.getName();
 
     private BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -126,6 +127,9 @@ public class ScrollingActivity extends AppCompatActivity implements CompoundButt
         SwitchCompat engine6Button = (SwitchCompat) findViewById(R.id.eng06);
         engine6Button.setTag(6);
         engine6Button.setOnCheckedChangeListener(this);
+
+        NavigationView yourNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        yourNavigationView.setItemIconTintList(null);
     }
 
     @Override
