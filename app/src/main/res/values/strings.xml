@@ -2,5 +2,6 @@
     <string name="app_name">PlantWatering</string>
     <string name="my_device">My Device</string>
     <string name="bounded_devices">Bounded Devices</string>
-    <string name="available_devices">Available Devices</string>    <string name="action_settings">Settings</string>
+    <string name="available_devices">Available Devices</string>
+    <string name="action_settings">Settings</string>
 </resources>
