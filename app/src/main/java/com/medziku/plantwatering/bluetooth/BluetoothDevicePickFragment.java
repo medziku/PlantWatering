@@ -1,4 +1,4 @@
-package com.medziku.plantwatering;
+package com.medziku.plantwatering.bluetooth;
 
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
@@ -13,6 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.medziku.plantwatering.R;
 
 import java.util.Set;
 

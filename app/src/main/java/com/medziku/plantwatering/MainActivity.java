@@ -1,48 +1,52 @@
 package com.medziku.plantwatering;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.medziku.plantwatering.station.PlantStationDetailsFragment;
+import com.medziku.plantwatering.station.PlantStationsFragment;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity(R.layout.activity_main)
+@OptionsMenu(R.menu.menu_scrolling)
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener,
         PlantStationDetailsFragment.OnFragmentInteractionListener {
-    private static final String TAG = MainActivity.class.getName();
 
-    private FloatingActionButton btButton;
+    @ViewById
+    FloatingActionButton fab;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @ViewById
+    NavigationView navigationView;
 
-        btButton = (FloatingActionButton) findViewById(R.id.fab); //TODO zamienić bibliotekę na menu fab
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    @AfterViews
+    protected void setUpNavigationView() {
         navigationView.setItemIconTintList(null);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
         navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+    @OptionsItem({R.id.action_settings})
+    boolean menuSearch() {
+        Toast.makeText(this, "No Settings Activity yet!", Toast.LENGTH_LONG).show();
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return item.getItemId() == R.id.action_settings || super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //TODO sprawdzenie jaki fragmrnt jest obecnie. Jezeli klikniety jest obecny, nicnie rob.
         switch (item.getItemId()) {
             case R.id.nav_plant_stations:
                 getSupportFragmentManager().beginTransaction().

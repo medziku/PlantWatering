@@ -1,4 +1,4 @@
-package com.medziku.plantwatering;
+package com.medziku.plantwatering.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -8,13 +8,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.medziku.plantwatering.R;
+
 import java.util.ArrayList;
 
-/**
- * Created by medziku on 15.04.15.
- *
- * Custom Bluetooth Device Adapter
- */
 public class BluetoothDeviceAdapter extends BaseAdapter {
 
     private Context mContext;

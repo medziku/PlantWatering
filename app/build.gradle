@@ -1,4 +1,11 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+ext {
+    androidVersion = "25.3.0"
+    googleServicesVersion = "10.2.1"
+    AAVersion = '4.2.0'
+}
 
 android {
     compileSdkVersion 25
@@ -21,9 +28,29 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:design:25.3.0'
-    compile 'com.android.support:support-v4:25.3.0'
-    compile 'com.google.android.gms:play-services:10.2.1'
+
+    apt group: 'org.androidannotations', name: 'androidannotations', version: AAVersion
+    compile group: 'org.androidannotations', name: 'androidannotations-api', version: AAVersion
+
+    // Design
+    compile group: 'com.android.support', name: 'appcompat-v7', version: androidVersion
+    compile group: 'com.android.support', name: 'design', version: androidVersion
+    compile group: 'com.android.support', name: 'support-annotations', version: androidVersion
+    compile group: 'com.android.support', name: 'support-v4', version: androidVersion
+
+    // GMS
+    compile group: 'com.google.android.gms', name: 'play-services', version: googleServicesVersion
+
+    // Firebase
+    compile group: 'com.google.firebase', name: 'firebase-auth', version: googleServicesVersion
+    compile group: 'com.google.firebase', name: 'firebase-core', version: googleServicesVersion
+    compile group: 'com.google.firebase', name: 'firebase-crash', version: googleServicesVersion
+    compile group: 'com.google.firebase', name: 'firebase-database', version: googleServicesVersion
+    compile group: 'com.google.firebase', name: 'firebase-storage', version: googleServicesVersion
+
+    // test
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
 }
+
+apply plugin: 'com.google.gms.google-services'

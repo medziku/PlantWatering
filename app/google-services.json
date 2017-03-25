@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "860446965482",
+    "firebase_url": "https://plantwatering.firebaseio.com",
+    "project_id": "firebase-plantwatering",
+    "storage_bucket": "firebase-plantwatering.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860446965482:android:12dcde272a4b7db5",
+        "android_client_info": {
+          "package_name": "com.medziku.plantwatering"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860446965482-rpr91fj6grughpal5m7qh8317mrqi373.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvkERGYTpBKwb5PNtbZzgp0EICOH3r4vs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
