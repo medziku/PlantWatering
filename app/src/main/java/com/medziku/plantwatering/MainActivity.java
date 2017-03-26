@@ -1,12 +1,15 @@
 package com.medziku.plantwatering;
 
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.medziku.plantwatering.station.PlantStationDetailsFragment;
@@ -25,10 +28,12 @@ public class MainActivity extends AppCompatActivity implements
         PlantStationDetailsFragment.OnFragmentInteractionListener {
 
     @ViewById
-    FloatingActionButton fab;
+    protected NavigationView navigationView;
 
-    @ViewById
-    NavigationView navigationView;
+    @ViewById(value = R.id.drawer_layout)
+    protected DrawerLayout mDrawerLayout;
+
+    private ActionBarDrawerToggle mDrawerToggle;
 
     @AfterViews
     protected void setUpNavigationView() {
@@ -38,9 +43,47 @@ public class MainActivity extends AppCompatActivity implements
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    public void setActionBar(Toolbar toolbar) {
+        if (null != mDrawerLayout && null != mDrawerToggle) {
+            mDrawerLayout.removeDrawerListener(mDrawerToggle);
+        }
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
+                R.string.drawer_open, R.string.drawer_close) {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+            }
+        };
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerToggle.syncState();
+        setSupportActionBar(toolbar);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (null != supportActionBar) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+            supportActionBar.setHomeButtonEnabled(true);
+        }
+    }
+
     @OptionsItem({R.id.action_settings})
-    boolean menuSearch() {
+    protected boolean menuSearch() {
         Toast.makeText(this, "No Settings Activity yet!", Toast.LENGTH_LONG).show();
+        return true;
+    }
+
+    @OptionsItem({android.R.id.home})
+    protected boolean toggleDrawer() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            mDrawerLayout.openDrawer(GravityCompat.START);
+        }
         return true;
     }
 

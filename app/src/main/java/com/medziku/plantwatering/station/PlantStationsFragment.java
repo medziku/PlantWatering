@@ -2,12 +2,14 @@ package com.medziku.plantwatering.station;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import com.medziku.plantwatering.MainActivity_;
 import com.medziku.plantwatering.R;
 import com.medziku.plantwatering.bluetooth.BluetoothDevicePickFragment;
 
@@ -20,12 +22,12 @@ import org.androidannotations.annotations.ViewById;
 public class PlantStationsFragment extends Fragment {
 
     @ViewById(R.id.toolbar)
-    Toolbar toolbar;
+    protected Toolbar toolbar;
 
     @ViewById(R.id.listView)
-    RecyclerView listView;
+    protected RecyclerView listView;
 
-    @Click(R.id.fab)
+    /*@Click(R.id.fab)
     void fabClicked() {
         Toast.makeText(this.getActivity(), "DD", Toast.LENGTH_SHORT).show();
         FragmentTransaction ft = this.getActivity().getSupportFragmentManager().beginTransaction();
@@ -36,20 +38,19 @@ public class PlantStationsFragment extends Fragment {
         ft.addToBackStack(null);
         BluetoothDevicePickFragment newFragment = BluetoothDevicePickFragment.newInstance();
         newFragment.show(ft, "dialog");
-    }
+    }*/
 
     public PlantStationsFragment() {
         // Required empty public constructor
     }
 
     public static PlantStationsFragment newInstance() {
-        PlantStationsFragment_ fragment = new PlantStationsFragment_();
-        return fragment;
+        return new PlantStationsFragment_();
     }
 
     @AfterViews
     public void setUpToolbar() {
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity_) getActivity()).setActionBar(toolbar);
     }
 
     @AfterViews

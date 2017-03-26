@@ -1,17 +1,21 @@
 package com.medziku.plantwatering.station;
 
 import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v7.widget.Toolbar;
 
+import com.medziku.plantwatering.MainActivity_;
 import com.medziku.plantwatering.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
+@EFragment(R.layout.plant_station_details_fragment)
 public class PlantStationDetailsFragment extends Fragment {
+
+    @ViewById(R.id.toolbar)
+    protected Toolbar toolbar;
 
     private OnFragmentInteractionListener mListener;
 
@@ -20,14 +24,12 @@ public class PlantStationDetailsFragment extends Fragment {
     }
 
     public static PlantStationDetailsFragment newInstance() {
-        PlantStationDetailsFragment fragment = new PlantStationDetailsFragment();
-        return fragment;
+        return new PlantStationDetailsFragment_();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.plant_station_details_fragment, container, false);
+    @AfterViews
+    protected void setUpToolbar() {
+        ((MainActivity_) getActivity()).setActionBar(toolbar);
     }
 
     @Override
@@ -43,8 +45,8 @@ public class PlantStationDetailsFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        super.onDetach();
         mListener = null;
+        super.onDetach();
     }
 
     public interface OnFragmentInteractionListener {
