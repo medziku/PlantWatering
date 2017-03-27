@@ -31,6 +31,7 @@ dependencies {
 
     apt group: 'org.androidannotations', name: 'androidannotations', version: AAVersion
     compile group: 'org.androidannotations', name: 'androidannotations-api', version: AAVersion
+    compile group: 'com.github.clans', name: 'fab', version: '1.6.4'
 
     // Design
     compile group: 'com.android.support', name: 'appcompat-v7', version: androidVersion

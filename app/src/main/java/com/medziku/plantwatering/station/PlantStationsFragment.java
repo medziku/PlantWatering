@@ -1,17 +1,13 @@
 package com.medziku.plantwatering.station;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.medziku.plantwatering.MainActivity_;
 import com.medziku.plantwatering.R;
-import com.medziku.plantwatering.bluetooth.BluetoothDevicePickFragment;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -27,18 +23,17 @@ public class PlantStationsFragment extends Fragment {
     @ViewById(R.id.listView)
     protected RecyclerView listView;
 
-    /*@Click(R.id.fab)
-    void fabClicked() {
-        Toast.makeText(this.getActivity(), "DD", Toast.LENGTH_SHORT).show();
-        FragmentTransaction ft = this.getActivity().getSupportFragmentManager().beginTransaction();
-        Fragment prev = this.getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        BluetoothDevicePickFragment newFragment = BluetoothDevicePickFragment.newInstance();
-        newFragment.show(ft, "dialog");
-    }*/
+    private OnFragmentInteractionListener mListener;
+
+    @Click(R.id.fab_discover_bt)
+    void fabDiscoverBtClicked() {
+        mListener.showNewPlantStation();
+    }
+
+    @Click(R.id.fab)
+    void fabNewPlantStationClicked() {
+        mListener.showNewPlantStation();
+    }
 
     public PlantStationsFragment() {
         // Required empty public constructor
@@ -58,6 +53,28 @@ public class PlantStationsFragment extends Fragment {
         PlantStationsAdapter adapter = new PlantStationsAdapter();
         listView.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, true));
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        mListener = null;
+        super.onDetach();
+    }
+
+    public interface OnFragmentInteractionListener {
+        void showBtManagement();
+        void showNewPlantStation();
     }
 
 }

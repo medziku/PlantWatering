@@ -25,7 +25,8 @@ import org.androidannotations.annotations.ViewById;
 @OptionsMenu(R.menu.menu_scrolling)
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener,
-        PlantStationDetailsFragment.OnFragmentInteractionListener {
+        PlantStationDetailsFragment.OnFragmentInteractionListener,
+        PlantStationsFragment.OnFragmentInteractionListener {
 
     @ViewById
     protected NavigationView navigationView;
@@ -108,11 +109,30 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.nav_share:
             case R.id.nav_send:
             default:
+                Toast.makeText(this, R.string.not_yet_implemented, Toast.LENGTH_SHORT).show();
                 break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void showNewPlantStation() {
+        Toast.makeText(this, R.string.not_yet_implemented, Toast.LENGTH_SHORT).show();
+        /*FragmentTransaction ft = this.getActivity().getSupportFragmentManager().beginTransaction();
+        Fragment prev = this.getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        BluetoothDevicePickFragment newFragment = BluetoothDevicePickFragment.newInstance();
+        newFragment.show(ft, "dialog");*/
+    }
+
+    @Override
+    public void showBtManagement() {
+        Toast.makeText(this, R.string.not_yet_implemented, Toast.LENGTH_SHORT).show();
     }
 }
