@@ -1,9 +1,9 @@
-package com.medziku.plantwathering.station;
+package com.medziku.plantwatering.station;
 
 
 public abstract class AbstractPlantStationPart implements PlantStationPart {
 
-    private String mName;
+    protected String mName;
 
     public String getmName() {
         return mName;

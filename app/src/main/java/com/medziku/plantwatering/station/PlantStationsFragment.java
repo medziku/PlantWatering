@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.medziku.plantwatering.MainActivity_;
 import com.medziku.plantwatering.R;
+import com.medziku.plantwatering.mocks.PlantStationMocks;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -17,13 +18,13 @@ import org.androidannotations.annotations.ViewById;
 @EFragment(R.layout.plant_stations_fragment)
 public class PlantStationsFragment extends Fragment {
 
+    private OnFragmentInteractionListener mListener;
+
     @ViewById(R.id.toolbar)
     protected Toolbar toolbar;
 
     @ViewById(R.id.listView)
     protected RecyclerView listView;
-
-    private OnFragmentInteractionListener mListener;
 
     @Click(R.id.fab_discover_bt)
     void fabDiscoverBtClicked() {
@@ -50,7 +51,9 @@ public class PlantStationsFragment extends Fragment {
 
     @AfterViews
     public void setUpListView() {
-        PlantStationsAdapter adapter = new PlantStationsAdapter();
+        PlantStationsAdapter adapter = new PlantStationsAdapter(
+                PlantStationMocks.mockPlantStations(),
+                mListener);
         listView.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, true));
         listView.setAdapter(adapter);
     }
@@ -75,6 +78,7 @@ public class PlantStationsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void showBtManagement();
         void showNewPlantStation();
+        void showPlantStationDetails(PlantStation station);
     }
 
 }

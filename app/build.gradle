@@ -29,6 +29,10 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+    // Internal
+    compile project(':data-model')
+
+    // External
     apt group: 'org.androidannotations', name: 'androidannotations', version: AAVersion
     compile group: 'org.androidannotations', name: 'androidannotations-api', version: AAVersion
     compile group: 'com.github.clans', name: 'fab', version: '1.6.4'

@@ -1,4 +1,4 @@
-package com.medziku.plantwathering.station;
+package com.medziku.plantwatering.station;
 
 public interface PlantStationPart {
 

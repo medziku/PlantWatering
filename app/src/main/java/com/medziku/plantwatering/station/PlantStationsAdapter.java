@@ -8,42 +8,51 @@ import android.widget.TextView;
 
 import com.medziku.plantwatering.R;
 
+import java.util.List;
+
 public class PlantStationsAdapter extends RecyclerView.Adapter<PlantStationsAdapter.ViewHolder> {
 
-    private static String[] testArray =
-            new String[]{"AAAA", "BBBB", "CCCC",
-                    "DDDD", "EEEE", "FFFF", "GGGG",
-                    "HHHH", "IIII", "JJJJ"};
+    private final List<PlantStation> mPlantStations;
+    private final PlantStationsFragment.OnFragmentInteractionListener mListener;
 
-    public PlantStationsAdapter() {
+    public PlantStationsAdapter(List<PlantStation> plantStations, PlantStationsFragment.OnFragmentInteractionListener listener) {
+        this.mPlantStations = plantStations;
+        this.mListener = listener;
     }
 
     @Override
-    public PlantStationsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.plant_stations_item, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(testArray[position]);
-
+        final int pos = position;
+        holder.mNameView.setText(mPlantStations.get(position).getDeviceName());
+        holder.mMainView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.showPlantStationDetails(mPlantStations.get(pos));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return testArray.length;
+        return mPlantStations.size();
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        private View mMainView;
+        private TextView mNameView;
 
-        public ViewHolder(View v) {
+        private ViewHolder(View v) {
             super(v);
-            mTextView = (TextView) v.findViewById(R.id.textView);
+            mMainView = v;
+            mNameView = (TextView) v.findViewById(R.id.nameView);
         }
     }
 }

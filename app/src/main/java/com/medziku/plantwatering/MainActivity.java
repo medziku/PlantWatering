@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.medziku.plantwatering.station.PlantStationDetailsFragment;
 import com.medziku.plantwatering.station.PlantStationsFragment;
+import com.medziku.plantwatering.station.PlantStation;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -99,11 +100,6 @@ public class MainActivity extends AppCompatActivity implements
                 break;
 
             case R.id.nav_weather:
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.fragment_placeholder, PlantStationDetailsFragment.newInstance()).
-                        commit();
-                break;
-
             case R.id.nav_history:
             case R.id.nav_tools:
             case R.id.nav_share:
@@ -119,6 +115,19 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+
+    }
+
+    @Override
     public void showNewPlantStation() {
         Toast.makeText(this, R.string.not_yet_implemented, Toast.LENGTH_SHORT).show();
         /*FragmentTransaction ft = this.getActivity().getSupportFragmentManager().beginTransaction();
@@ -129,6 +138,14 @@ public class MainActivity extends AppCompatActivity implements
         ft.addToBackStack(null);
         BluetoothDevicePickFragment newFragment = BluetoothDevicePickFragment.newInstance();
         newFragment.show(ft, "dialog");*/
+    }
+
+    @Override
+    public void showPlantStationDetails(PlantStation station) {
+        getSupportFragmentManager().beginTransaction().
+                replace(R.id.fragment_placeholder, PlantStationDetailsFragment.newInstance(station)).
+                addToBackStack(PlantStationDetailsFragment.BACKSTACK_NAME).
+                commit();
     }
 
     @Override

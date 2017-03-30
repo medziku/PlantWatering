@@ -1,11 +1,11 @@
-package com.medziku.plantwathering.station.parts;
+package com.medziku.plantwatering.station.parts;
 
-import com.medziku.plantwathering.station.AbstractPlantStationPart;
+import com.medziku.plantwatering.station.AbstractPlantStationPart;
 
 
-public class BatteryLevelSensor extends AbstractPlantStationPart {
+public abstract class BatteryLevelSensor extends AbstractPlantStationPart {
 
-    private float[] mBatteryLevels;
+    protected float[] mBatteryLevels;
 
     public float[] getBatteryLevels() {
         return mBatteryLevels;
