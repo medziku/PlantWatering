@@ -58,7 +58,7 @@ public class PlantStationMocks {
         HumiditySensor humiditySensor = new HumiditySensorImpl("Hum", 1.22f);
         station.getPlantStationParts().add(humiditySensor);
 
-        Pump pump = new PumpImpl("Pump", Pump.STATE_ON, 32.5f);
+        Pump pump = new PumpImpl("Pump", Pump.Companion.getSTATE_ON(), 32.5f);
         station.getPlantStationParts().add(pump);
 
         RainSensor rainSensor = new RainSensorImpl("Rain", true);

@@ -9,13 +9,11 @@ import com.medziku.plantwatering.station.parts.RainSensor;
 public class RainSensorImpl extends RainSensor implements Parcelable {
 
     public RainSensorImpl(String name, boolean isRaining) {
-        this.mName = name;
-        this.mIsRaining = isRaining;
+        super(name, isRaining);
     }
 
     private RainSensorImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mIsRaining = in.readByte() == 1;
+        super(in.readString(), in.readByte() == 1);
     }
 
     public static final Creator<RainSensorImpl> CREATOR = new Creator<RainSensorImpl>() {
@@ -37,7 +35,7 @@ public class RainSensorImpl extends RainSensor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeByte(mIsRaining ? (byte) 1 : (byte) 0);
+        dest.writeString(getName());
+        dest.writeByte(isRaining() ? (byte) 1 : (byte) 0);
     }
 }

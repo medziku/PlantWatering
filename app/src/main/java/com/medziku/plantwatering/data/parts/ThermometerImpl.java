@@ -9,13 +9,11 @@ import com.medziku.plantwatering.station.parts.Thermometer;
 public class ThermometerImpl extends Thermometer implements Parcelable {
 
     public ThermometerImpl(String name, float temperature) {
-        this.mName = name;
-        this.mTemperature = temperature;
+        super(name, temperature);
     }
 
     private ThermometerImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mTemperature = in.readFloat();
+        super(in.readString(), in.readFloat());
     }
 
     public static final Creator<ThermometerImpl> CREATOR = new Creator<ThermometerImpl>() {
@@ -37,7 +35,7 @@ public class ThermometerImpl extends Thermometer implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeFloat(mTemperature);
+        dest.writeString(getName());
+        dest.writeFloat(getTemperature());
     }
 }

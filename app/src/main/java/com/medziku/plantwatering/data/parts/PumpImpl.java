@@ -9,15 +9,11 @@ import com.medziku.plantwatering.station.parts.Pump;
 public class PumpImpl extends Pump implements Parcelable {
 
     public PumpImpl(String name, int state, float speed) {
-        this.mName = name;
-        this.mState = state;
-        this.mSpeed = speed;
+        super(name, state, speed);
     }
 
     private PumpImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mState = in.readInt();
-        this.mSpeed = in.readFloat();
+        super(in.readString(), in.readInt(), in.readFloat());
     }
 
     public static final Creator<PumpImpl> CREATOR = new Creator<PumpImpl>() {
@@ -39,8 +35,8 @@ public class PumpImpl extends Pump implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeInt(mState);
-        dest.writeFloat(mSpeed);
+        dest.writeString(getName());
+        dest.writeInt(getState());
+        dest.writeFloat(getSpeed());
     }
 }

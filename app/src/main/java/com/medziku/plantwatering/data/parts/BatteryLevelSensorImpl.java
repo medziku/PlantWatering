@@ -9,13 +9,12 @@ import com.medziku.plantwatering.station.parts.BatteryLevelSensor;
 public class BatteryLevelSensorImpl extends BatteryLevelSensor implements Parcelable {
 
     public BatteryLevelSensorImpl(String name, float[] batteryLevels) {
-        this.mName = name;
-        this.mBatteryLevels = batteryLevels;
+        super(name, batteryLevels);
     }
 
-    private BatteryLevelSensorImpl(Parcel in) {
-        this.mName = in.readString();
-        in.readFloatArray(this.mBatteryLevels);
+    private BatteryLevelSensorImpl(Parcel in) { //TODO test od set //FIXME
+        super(in.readString(), new float[]{});
+//        in.readFloatArray(this.getBatteryLevels());
     }
 
     public static final Creator<BatteryLevelSensorImpl> CREATOR = new Creator<BatteryLevelSensorImpl>() {
@@ -37,7 +36,7 @@ public class BatteryLevelSensorImpl extends BatteryLevelSensor implements Parcel
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeFloatArray(mBatteryLevels);
+        dest.writeString(getName());
+        dest.writeFloatArray(getBatteryLevels());
     }
 }

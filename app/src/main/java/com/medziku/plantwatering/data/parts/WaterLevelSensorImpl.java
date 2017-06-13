@@ -9,13 +9,11 @@ import com.medziku.plantwatering.station.parts.WaterLevelSensor;
 public class WaterLevelSensorImpl extends WaterLevelSensor implements Parcelable {
 
     public WaterLevelSensorImpl(String name, float waterLevel) {
-        this.mName = name;
-        this.mWaterLevel = waterLevel;
+        super(name, waterLevel);
     }
 
     private WaterLevelSensorImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mWaterLevel = in.readFloat();
+        super(in.readString(), in.readFloat());
     }
 
     public static final Creator<WaterLevelSensorImpl> CREATOR = new Creator<WaterLevelSensorImpl>() {
@@ -37,7 +35,7 @@ public class WaterLevelSensorImpl extends WaterLevelSensor implements Parcelable
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeFloat(mWaterLevel);
+        dest.writeString(getName());
+        dest.writeFloat(getWaterLevel());
     }
 }

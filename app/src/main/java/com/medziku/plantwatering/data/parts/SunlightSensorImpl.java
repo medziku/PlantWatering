@@ -9,13 +9,11 @@ import com.medziku.plantwatering.station.parts.SunlightSensor;
 public class SunlightSensorImpl extends SunlightSensor implements Parcelable {
 
     public SunlightSensorImpl(String name, float sunlightLevel) {
-        this.mName = name;
-        this.mSunlightLevel = sunlightLevel;
+        super(name, sunlightLevel);
     }
 
     private SunlightSensorImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mSunlightLevel = in.readFloat();
+        super(in.readString(), in.readFloat());
     }
 
     public static final Creator<SunlightSensorImpl> CREATOR = new Creator<SunlightSensorImpl>() {
@@ -37,7 +35,7 @@ public class SunlightSensorImpl extends SunlightSensor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeFloat(mSunlightLevel);
+        dest.writeString(getName());
+        dest.writeFloat(getSunlightLevel());
     }
 }

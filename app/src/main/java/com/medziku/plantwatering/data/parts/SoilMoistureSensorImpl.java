@@ -9,13 +9,11 @@ import com.medziku.plantwatering.station.parts.SoilMoistureSensor;
 public class SoilMoistureSensorImpl extends SoilMoistureSensor implements Parcelable {
 
     public SoilMoistureSensorImpl(String name, float soilMoistureLevel) {
-        this.mName = name;
-        this.mSoilMoistureLevel = soilMoistureLevel;
+        super(name, soilMoistureLevel);
     }
 
     private SoilMoistureSensorImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mSoilMoistureLevel = in.readFloat();
+        super(in.readString(), in.readFloat());
     }
 
     public static final Creator<SoilMoistureSensorImpl> CREATOR = new Creator<SoilMoistureSensorImpl>() {
@@ -37,7 +35,7 @@ public class SoilMoistureSensorImpl extends SoilMoistureSensor implements Parcel
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeFloat(mSoilMoistureLevel);
+        dest.writeString(getName());
+        dest.writeFloat(getSoilMoistureLevel());
     }
 }

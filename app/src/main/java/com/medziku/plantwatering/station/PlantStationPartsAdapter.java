@@ -37,7 +37,7 @@ public class PlantStationPartsAdapter extends RecyclerView.Adapter<PlantStationP
 
     private final List<PlantStationPart> mPlantStationParts;
 
-    private PlantStationPartsAdapter(List<PlantStationPart> plantStationParts) {
+    public PlantStationPartsAdapter(List<PlantStationPart> plantStationParts) {
         this.mPlantStationParts = plantStationParts;
     }
 
@@ -99,7 +99,7 @@ public class PlantStationPartsAdapter extends RecyclerView.Adapter<PlantStationP
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final int pos = position;
-        holder.mNameView.setText(mPlantStationParts.get(position).getmName());
+        holder.mNameView.setText(mPlantStationParts.get(position).getName());
         holder.mMainView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

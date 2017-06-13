@@ -9,13 +9,11 @@ import com.medziku.plantwatering.station.parts.Timer;
 public class TimerImpl extends Timer implements Parcelable {
 
     public TimerImpl(String name, String time) {
-        this.mName = name;
-        this.mTime = time;
+        super(name, time);
     }
 
     private TimerImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mTime = in.readString();
+        super(in.readString(), in.readString());
     }
 
     public static final Creator<TimerImpl> CREATOR = new Creator<TimerImpl>() {
@@ -37,7 +35,7 @@ public class TimerImpl extends Timer implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeString(mTime);
+        dest.writeString(getName());
+        dest.writeString(getTime());
     }
 }

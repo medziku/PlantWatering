@@ -9,13 +9,11 @@ import com.medziku.plantwatering.station.parts.HumiditySensor;
 public class HumiditySensorImpl extends HumiditySensor implements Parcelable {
 
     public HumiditySensorImpl(String name, float humidity) {
-        this.mName= name;
-        this.mHumidity = humidity;
+        super(name, humidity);
     }
 
     private HumiditySensorImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mHumidity = in.readFloat();
+        super(in.readString(), in.readFloat());
     }
 
     public static final Creator<HumiditySensorImpl> CREATOR = new Creator<HumiditySensorImpl>() {
@@ -37,7 +35,7 @@ public class HumiditySensorImpl extends HumiditySensor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeFloat(mHumidity);
+        dest.writeString(getName());
+        dest.writeFloat(getHumidity());
     }
 }

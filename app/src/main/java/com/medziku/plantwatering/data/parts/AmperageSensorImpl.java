@@ -9,13 +9,11 @@ import com.medziku.plantwatering.station.parts.AmperageSensor;
 public class AmperageSensorImpl extends AmperageSensor implements Parcelable {
 
     public AmperageSensorImpl(String name, float amperage) {
-        this.mName = name;
-        this.mAmperage = amperage;
+        super(name, amperage);
     }
 
     private AmperageSensorImpl(Parcel in) {
-        this.mName = in.readString();
-        this.mAmperage = in.readFloat();
+        super(in.readString(), in.readFloat());
     }
 
     public static final Creator<AmperageSensorImpl> CREATOR = new Creator<AmperageSensorImpl>() {
@@ -37,7 +35,7 @@ public class AmperageSensorImpl extends AmperageSensor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mName);
-        dest.writeFloat(mAmperage);
+        dest.writeString(getName());
+        dest.writeFloat(getAmperage());
     }
 }
