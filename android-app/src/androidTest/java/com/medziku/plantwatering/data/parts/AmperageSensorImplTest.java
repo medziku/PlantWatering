@@ -25,7 +25,7 @@ public class AmperageSensorImplTest {
         parcel.setDataPosition(0);
 
         //when
-        AmperageSensorImpl createdFromParcel = AmperageSensorImpl.CREATOR.createFromParcel(parcel);
+        AmperageSensorImpl createdFromParcel = AmperageSensorImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

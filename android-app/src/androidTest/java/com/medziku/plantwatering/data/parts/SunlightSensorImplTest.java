@@ -25,7 +25,7 @@ public class SunlightSensorImplTest {
         parcel.setDataPosition(0);
 
         //when
-        SunlightSensorImpl createdFromParcel = SunlightSensorImpl.CREATOR.createFromParcel(parcel);
+        SunlightSensorImpl createdFromParcel = SunlightSensorImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

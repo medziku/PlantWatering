@@ -25,7 +25,7 @@ public class RainSensorImplTest {
         parcel.setDataPosition(0);
 
         //when
-        RainSensorImpl createdFromParcel = RainSensorImpl.CREATOR.createFromParcel(parcel);
+        RainSensorImpl createdFromParcel = RainSensorImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

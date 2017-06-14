@@ -26,7 +26,7 @@ public class PumpImplTest {
         parcel.setDataPosition(0);
 
         //when
-        PumpImpl createdFromParcel = PumpImpl.CREATOR.createFromParcel(parcel);
+        PumpImpl createdFromParcel = PumpImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

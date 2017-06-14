@@ -25,7 +25,7 @@ public class VoltageSensorImplTest {
         parcel.setDataPosition(0);
 
         //when
-        VoltageSensorImpl createdFromParcel = VoltageSensorImpl.CREATOR.createFromParcel(parcel);
+        VoltageSensorImpl createdFromParcel = VoltageSensorImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

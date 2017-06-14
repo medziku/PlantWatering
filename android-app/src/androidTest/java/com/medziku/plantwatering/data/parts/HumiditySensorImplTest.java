@@ -25,7 +25,7 @@ public class HumiditySensorImplTest {
         parcel.setDataPosition(0);
 
         //when
-        HumiditySensorImpl createdFromParcel = HumiditySensorImpl.CREATOR.createFromParcel(parcel);
+        HumiditySensorImpl createdFromParcel = HumiditySensorImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

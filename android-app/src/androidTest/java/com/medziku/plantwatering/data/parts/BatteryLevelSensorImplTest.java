@@ -29,7 +29,7 @@ public class BatteryLevelSensorImplTest {
         parcel.setDataPosition(0);
 
         //when
-        BatteryLevelSensorImpl createdFromParcel = BatteryLevelSensorImpl.CREATOR.createFromParcel(parcel);
+        BatteryLevelSensorImpl createdFromParcel = BatteryLevelSensorImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

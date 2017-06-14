@@ -25,7 +25,7 @@ public class ThermometerImplTest {
         parcel.setDataPosition(0);
 
         //when
-        ThermometerImpl createdFromParcel = ThermometerImpl.CREATOR.createFromParcel(parcel);
+        ThermometerImpl createdFromParcel = ThermometerImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

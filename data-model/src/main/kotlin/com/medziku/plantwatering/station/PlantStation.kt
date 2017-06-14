@@ -2,14 +2,14 @@ package com.medziku.plantwatering.station
 
 interface PlantStation {
 
-    val deviceId: String
+    var deviceId: String
 
-    val deviceName: String
+    var deviceName: String
 
-    val bluetoothAddress: String
+    var bluetoothAddress: String
 
-    val ownerKey: String
+    var ownerKey: String
 
-    val plantStationParts: Collection<PlantStationPart>
+    var plantStationParts: Collection<PlantStationPart>
 
 }

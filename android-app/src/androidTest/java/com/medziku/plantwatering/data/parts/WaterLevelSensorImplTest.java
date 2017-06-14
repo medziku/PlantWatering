@@ -25,7 +25,7 @@ public class WaterLevelSensorImplTest {
         parcel.setDataPosition(0);
 
         //when
-        WaterLevelSensorImpl createdFromParcel = WaterLevelSensorImpl.CREATOR.createFromParcel(parcel);
+        WaterLevelSensorImpl createdFromParcel = WaterLevelSensorImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

@@ -44,7 +44,7 @@ public class PlantStationImplTest {
         parcel.setDataPosition(0);
 
         //when
-        PlantStationImpl createdFromParcel = PlantStationImpl.CREATOR.createFromParcel(parcel);
+        PlantStationImpl createdFromParcel = PlantStationImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getDeviceId(), is(TEST_STRING_DEVICE_ID));

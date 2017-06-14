@@ -25,7 +25,7 @@ public class TimerImplTest {
         parcel.setDataPosition(0);
 
         //when
-        TimerImpl createdFromParcel = TimerImpl.CREATOR.createFromParcel(parcel);
+        TimerImpl createdFromParcel = TimerImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));

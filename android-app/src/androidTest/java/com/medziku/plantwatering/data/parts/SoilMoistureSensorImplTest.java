@@ -25,7 +25,7 @@ public class SoilMoistureSensorImplTest {
         parcel.setDataPosition(0);
 
         //when
-        SoilMoistureSensorImpl createdFromParcel = SoilMoistureSensorImpl.CREATOR.createFromParcel(parcel);
+        SoilMoistureSensorImpl createdFromParcel = SoilMoistureSensorImpl.Companion.getCREATOR().createFromParcel(parcel);
 
         //then
         assertThat(createdFromParcel.getName(), is(TEST_STRING));
