@@ -12,9 +12,11 @@ public class BatteryLevelSensorImpl extends BatteryLevelSensor implements Parcel
         super(name, batteryLevels);
     }
 
-    private BatteryLevelSensorImpl(Parcel in) { //TODO test od set //FIXME
+    private BatteryLevelSensorImpl(Parcel in) {
         super(in.readString(), new float[]{});
-//        in.readFloatArray(this.getBatteryLevels());
+        float[] floats = new float[in.readInt()];
+        in.readFloatArray(floats);
+        setBatteryLevels(floats);
     }
 
     public static final Creator<BatteryLevelSensorImpl> CREATOR = new Creator<BatteryLevelSensorImpl>() {
@@ -37,6 +39,7 @@ public class BatteryLevelSensorImpl extends BatteryLevelSensor implements Parcel
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(getName());
+        dest.writeInt(getBatteryLevels().length);
         dest.writeFloatArray(getBatteryLevels());
     }
 }

@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import com.medziku.plantwatering.station.PlantStation;
 import com.medziku.plantwatering.station.PlantStationPart;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,8 +32,11 @@ public class PlantStationImpl implements PlantStation, Parcelable {
         mDeviceName = in.readString();
         mBluetoothAddress = in.readString();
         mOwnerKey = in.readString();
-//        in.readParcelableArray()
-//        mInfo = in.readParcelable(MySubParcelable.class.getClassLoader());
+        int size = in.readInt();
+        for (int i = 0; i < size; i++) {
+            PlantStationPart plantStationPart = in.readParcelable(getClass().getClassLoader());
+            mPlantStationPartCollection.add(plantStationPart);
+        }
     }
 
     @Override
@@ -45,6 +50,12 @@ public class PlantStationImpl implements PlantStation, Parcelable {
         parcel.writeString(mDeviceName);
         parcel.writeString(mBluetoothAddress);
         parcel.writeString(mOwnerKey);
+        parcel.writeInt(mPlantStationPartCollection.size());
+        for (PlantStationPart part : mPlantStationPartCollection) {
+            if (part instanceof Parcelable) {
+                parcel.writeParcelable((Parcelable) part, 0);
+            }
+        }
     }
 
     public static final Parcelable.Creator<PlantStationImpl> CREATOR
@@ -62,6 +73,7 @@ public class PlantStationImpl implements PlantStation, Parcelable {
     };
 
     @Override
+    @NotNull
     public String getDeviceId() {
         return mDeviceId;
     }
@@ -71,6 +83,7 @@ public class PlantStationImpl implements PlantStation, Parcelable {
     }
 
     @Override
+    @NotNull
     public String getDeviceName() {
         return mDeviceName;
     }
@@ -80,6 +93,7 @@ public class PlantStationImpl implements PlantStation, Parcelable {
     }
 
     @Override
+    @NotNull
     public String getBluetoothAddress() {
         return mBluetoothAddress;
     }
@@ -89,6 +103,7 @@ public class PlantStationImpl implements PlantStation, Parcelable {
     }
 
     @Override
+    @NotNull
     public String getOwnerKey() {
         return mOwnerKey;
     }
@@ -98,6 +113,7 @@ public class PlantStationImpl implements PlantStation, Parcelable {
     }
 
     @Override
+    @NotNull
     public Collection<PlantStationPart> getPlantStationParts() {
         return mPlantStationPartCollection;
     }
