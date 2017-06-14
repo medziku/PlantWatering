@@ -46,8 +46,7 @@ public class BluetoothDevicePickFragment extends DialogFragment {
     };
 
     public static BluetoothDevicePickFragment newInstance() {
-        BluetoothDevicePickFragment frag = new BluetoothDevicePickFragment();
-        return frag;
+        return new BluetoothDevicePickFragment();
     }
 
     @Override

@@ -26,14 +26,14 @@ public class PlantStationsFragment extends Fragment {
     @ViewById(R.id.listView)
     protected RecyclerView listView;
 
-    @Click(R.id.fab_discover_bt)
+    @Click(R.id.fab_add_new)
     void fabDiscoverBtClicked() {
         mListener.showNewPlantStation();
     }
 
-    @Click(R.id.fab)
+    @Click(R.id.fab_discover_bt)
     void fabNewPlantStationClicked() {
-        mListener.showNewPlantStation();
+        mListener.showBtManagement();
     }
 
     public PlantStationsFragment() {

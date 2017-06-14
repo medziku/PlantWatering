@@ -1,7 +1,10 @@
 package com.medziku.plantwatering;
 
+import android.bluetooth.BluetoothAdapter;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -12,9 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.medziku.plantwatering.bluetooth.BluetoothDevicePickFragment;
+import com.medziku.plantwatering.station.PlantStation;
 import com.medziku.plantwatering.station.PlantStationDetailsFragment;
 import com.medziku.plantwatering.station.PlantStationsFragment;
-import com.medziku.plantwatering.station.PlantStation;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -116,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
@@ -124,20 +127,27 @@ public class MainActivity extends AppCompatActivity implements
         } else {
             getSupportFragmentManager().popBackStack();
         }
+    }
 
+    @Override
+    public void showBtManagement() {
+        if (null == BluetoothAdapter.getDefaultAdapter()) {
+            Toast.makeText(this, "Bluetooth not supported on this device", Toast.LENGTH_LONG).show();
+        } else {
+            FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+            Fragment prev = this.getSupportFragmentManager().findFragmentByTag("dialog");
+            if (prev != null) {
+                ft.remove(prev);
+            }
+            ft.addToBackStack(null);
+            BluetoothDevicePickFragment newFragment = BluetoothDevicePickFragment.newInstance();
+            newFragment.show(ft, "dialog");
+        }
     }
 
     @Override
     public void showNewPlantStation() {
         Toast.makeText(this, R.string.not_yet_implemented, Toast.LENGTH_SHORT).show();
-        /*FragmentTransaction ft = this.getActivity().getSupportFragmentManager().beginTransaction();
-        Fragment prev = this.getActivity().getSupportFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-        BluetoothDevicePickFragment newFragment = BluetoothDevicePickFragment.newInstance();
-        newFragment.show(ft, "dialog");*/
     }
 
     @Override
@@ -146,10 +156,5 @@ public class MainActivity extends AppCompatActivity implements
                 replace(R.id.fragment_placeholder, PlantStationDetailsFragment.newInstance(station)).
                 addToBackStack(PlantStationDetailsFragment.BACKSTACK_NAME).
                 commit();
-    }
-
-    @Override
-    public void showBtManagement() {
-        Toast.makeText(this, R.string.not_yet_implemented, Toast.LENGTH_SHORT).show();
     }
 }
