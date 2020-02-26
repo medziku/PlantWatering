@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 ext {
     androidVersion = "25.3.0"
     googleServicesVersion = "10.2.1"
-    AAVersion = '4.2.0'
+    AAVersion = '4.6.0'
 }
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "com.medziku.plantwatering"
@@ -20,6 +20,13 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "androidManifestFile": "$projectDir/src/main/AndroidManifest.xml".toString()
+                ]
+            }
+        }
     }
     buildTypes {
         release {
@@ -27,38 +34,48 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Internal
-    compile project(':data-model')
+    implementation project(':data-model')
 
     // External
-    apt group: 'org.androidannotations', name: 'androidannotations', version: AAVersion
-    compile group: 'org.androidannotations', name: 'androidannotations-api', version: AAVersion
-    compile group: 'com.github.clans', name: 'fab', version: '1.6.4'
+    annotationProcessor group: 'org.androidannotations', name: 'androidannotations', version: AAVersion
+    implementation group: 'org.androidannotations', name: 'androidannotations-api', version: AAVersion
+    implementation group: 'com.github.clans', name: 'fab', version: '1.6.4'
 
     // Design
-    compile group: 'com.android.support', name: 'appcompat-v7', version: androidVersion
-    compile group: 'com.android.support', name: 'design', version: androidVersion
-    compile group: 'com.android.support', name: 'support-annotations', version: androidVersion
-    compile group: 'com.android.support', name: 'support-v4', version: androidVersion
+    implementation group: 'com.android.support', name: 'appcompat-v7', version: androidVersion
+    implementation group: 'com.android.support', name: 'design', version: androidVersion
+    implementation group: 'com.android.support', name: 'support-annotations', version: androidVersion
+    implementation group: 'com.android.support', name: 'support-v4', version: androidVersion
 
     // GMS
-    compile group: 'com.google.android.gms', name: 'play-services', version: googleServicesVersion
+    implementation group: 'com.google.android.gms', name: 'play-services', version: googleServicesVersion
 
     // Firebase
-    compile group: 'com.google.firebase', name: 'firebase-auth', version: googleServicesVersion
-    compile group: 'com.google.firebase', name: 'firebase-core', version: googleServicesVersion
-    compile group: 'com.google.firebase', name: 'firebase-crash', version: googleServicesVersion
-    compile group: 'com.google.firebase', name: 'firebase-database', version: googleServicesVersion
-    compile group: 'com.google.firebase', name: 'firebase-storage', version: googleServicesVersion
+    implementation group: 'com.google.firebase', name: 'firebase-auth', version: googleServicesVersion
+    implementation group: 'com.google.firebase', name: 'firebase-core', version: googleServicesVersion
+    implementation group: 'com.google.firebase', name: 'firebase-crash', version: googleServicesVersion
+    implementation group: 'com.google.firebase', name: 'firebase-database', version: googleServicesVersion
+    implementation group: 'com.google.firebase', name: 'firebase-storage', version: googleServicesVersion
 
     // test
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    androidTestCompile (group: 'com.android.support.test', name: 'runner', version:'0.5') {
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    androidTestImplementation (group: 'com.android.support.test', name: 'runner', version:'0.5') {
         exclude module: 'support-annotations'
     }
 

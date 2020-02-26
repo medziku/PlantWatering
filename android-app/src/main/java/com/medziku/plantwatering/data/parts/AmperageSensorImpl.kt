@@ -5,7 +5,6 @@ import android.os.Parcelable
 
 import com.medziku.plantwatering.station.parts.AmperageSensor
 
-
 class AmperageSensorImpl : AmperageSensor, Parcelable {
 
     constructor(name: String, amperage: Float) : super(name, amperage)
@@ -23,6 +22,7 @@ class AmperageSensorImpl : AmperageSensor, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<AmperageSensorImpl> = object : Parcelable.Creator<AmperageSensorImpl> {
             override fun createFromParcel(`in`: Parcel): AmperageSensorImpl {
                 return AmperageSensorImpl(`in`)
