@@ -23,6 +23,7 @@ class HumiditySensorImpl : HumiditySensor, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<HumiditySensorImpl> = object : Parcelable.Creator<HumiditySensorImpl> {
             override fun createFromParcel(`in`: Parcel): HumiditySensorImpl {
                 return HumiditySensorImpl(`in`)

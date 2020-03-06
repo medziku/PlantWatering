@@ -24,6 +24,7 @@ class PumpImpl : Pump, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<PumpImpl> = object : Parcelable.Creator<PumpImpl> {
             override fun createFromParcel(`in`: Parcel): PumpImpl {
                 return PumpImpl(`in`)

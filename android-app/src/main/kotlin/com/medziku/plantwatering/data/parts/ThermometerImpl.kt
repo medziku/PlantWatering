@@ -23,6 +23,7 @@ class ThermometerImpl : Thermometer, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<ThermometerImpl> = object : Parcelable.Creator<ThermometerImpl> {
             override fun createFromParcel(`in`: Parcel): ThermometerImpl {
                 return ThermometerImpl(`in`)

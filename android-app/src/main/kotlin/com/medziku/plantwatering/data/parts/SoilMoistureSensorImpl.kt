@@ -23,6 +23,7 @@ class SoilMoistureSensorImpl : SoilMoistureSensor, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<SoilMoistureSensorImpl> = object : Parcelable.Creator<SoilMoistureSensorImpl> {
             override fun createFromParcel(`in`: Parcel): SoilMoistureSensorImpl {
                 return SoilMoistureSensorImpl(`in`)

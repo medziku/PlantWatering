@@ -23,6 +23,7 @@ class WaterLevelSensorImpl : WaterLevelSensor, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<WaterLevelSensorImpl> = object : Parcelable.Creator<WaterLevelSensorImpl> {
             override fun createFromParcel(`in`: Parcel): WaterLevelSensorImpl {
                 return WaterLevelSensorImpl(`in`)

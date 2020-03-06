@@ -10,9 +10,9 @@ buildscript {
         classpath 'com.google.gms:google-services:4.3.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
     }
 }
-apply plugin: 'kotlin'
 
 allprojects {
     repositories {
@@ -20,4 +20,10 @@ allprojects {
         jcenter()
         mavenCentral()
     }
+    apply plugin: 'kotlin-allopen'
+    allOpen {
+        annotation("org.androidannotations.api.KotlinOpen")
+    }
 }
+
+

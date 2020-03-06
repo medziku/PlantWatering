@@ -28,6 +28,7 @@ class BatteryLevelSensorImpl : BatteryLevelSensor, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<BatteryLevelSensorImpl> = object : Parcelable.Creator<BatteryLevelSensorImpl> {
             override fun createFromParcel(`in`: Parcel): BatteryLevelSensorImpl {
                 return BatteryLevelSensorImpl(`in`)

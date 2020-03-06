@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-allopen"
+apply plugin: "kotlin-kapt"
 
 ext {
     androidVersion = "25.3.0"
@@ -34,15 +36,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+/*    compileOptions {
+        sourceCompatibility kotlin_version
+        targetCompatibility kotlin_version
+    }*/
     kotlinOptions {
         jvmTarget = "1.8"
     }
     lintOptions {
         abortOnError false
+    }
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
     }
 }
 
@@ -53,7 +58,7 @@ dependencies {
     implementation project(':data-model')
 
     // External
-    annotationProcessor group: 'org.androidannotations', name: 'androidannotations', version: AAVersion
+    kapt group: 'org.androidannotations', name: 'androidannotations', version: AAVersion
     implementation group: 'org.androidannotations', name: 'androidannotations-api', version: AAVersion
     implementation group: 'com.github.clans', name: 'fab', version: '1.6.4'
 

@@ -10,6 +10,6 @@ interface PlantStation {
 
     var ownerKey: String
 
-    var plantStationParts: Collection<PlantStationPart>
+    var plantStationParts: MutableCollection<PlantStationPart>
 
 }

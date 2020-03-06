@@ -13,7 +13,7 @@ class PlantStationImpl : PlantStation, Parcelable {
     override var bluetoothAddress: String
     override var ownerKey: String// ma jakoś wskazywać (nie bezpośrednio) na id właściciela
     //może to być jakieś invitationId czy cuś, ale narazie nieistotne
-    override var plantStationParts: Collection<PlantStationPart> = ArrayList()
+    override var plantStationParts: MutableCollection<PlantStationPart> = ArrayList()
 
     constructor(deviceId: String, deviceName: String, bluetoothAddress: String, ownerKey: String) {
         this.deviceId = deviceId
@@ -28,10 +28,10 @@ class PlantStationImpl : PlantStation, Parcelable {
         bluetoothAddress = `in`.readString()
         ownerKey = `in`.readString()
         val size = `in`.readInt()
-        for (i in 0..size - 1) {
+        for (i in 0 until size) {
             val plantStationPart = `in`.readParcelable<Parcelable>(javaClass.classLoader)
             if (plantStationPart is PlantStationPart) {
-                plantStationParts = plantStationParts.plus(plantStationPart)
+                plantStationParts.add(plantStationPart)
             }
         }
     }
@@ -54,11 +54,11 @@ class PlantStationImpl : PlantStation, Parcelable {
     }
 
     fun addPlantStationPart(part: PlantStationPart) {
-        plantStationParts = plantStationParts.plus(part)
+        plantStationParts.add(part)
     }
 
     fun removePlantStationPart(part: PlantStationPart) {
-        plantStationParts = plantStationParts.minus(part)
+        plantStationParts.remove(part)
     }
 
     fun containsPlantStationPart(part: PlantStationPart): Boolean {
@@ -67,6 +67,7 @@ class PlantStationImpl : PlantStation, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<PlantStationImpl> = object : Parcelable.Creator<PlantStationImpl> {
 
             override fun createFromParcel(`in`: Parcel): PlantStationImpl {

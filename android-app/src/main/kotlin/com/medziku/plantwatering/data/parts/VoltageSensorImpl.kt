@@ -23,6 +23,7 @@ class VoltageSensorImpl : VoltageSensor, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<VoltageSensorImpl> = object : Parcelable.Creator<VoltageSensorImpl> {
             override fun createFromParcel(`in`: Parcel): VoltageSensorImpl {
                 return VoltageSensorImpl(`in`)

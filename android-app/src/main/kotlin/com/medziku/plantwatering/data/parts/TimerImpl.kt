@@ -23,6 +23,7 @@ class TimerImpl : Timer, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<TimerImpl> = object : Parcelable.Creator<TimerImpl> {
             override fun createFromParcel(`in`: Parcel): TimerImpl {
                 return TimerImpl(`in`)

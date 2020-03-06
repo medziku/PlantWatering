@@ -23,6 +23,7 @@ class SunlightSensorImpl : SunlightSensor, Parcelable {
 
     companion object {
 
+        @JvmField
         val CREATOR: Parcelable.Creator<SunlightSensorImpl> = object : Parcelable.Creator<SunlightSensorImpl> {
             override fun createFromParcel(`in`: Parcel): SunlightSensorImpl {
                 return SunlightSensorImpl(`in`)
